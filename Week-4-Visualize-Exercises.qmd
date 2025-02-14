@@ -58,8 +58,8 @@ Replace this scatterplot with one that draws boxplots. Use the cheatsheet. Try y
 #| label: Second Visualization: Boxplot
 # Creates boxplot with in-built mpg dataset
 ggplot(data = mpg) +
-  geom_boxplot(mapping = aes(x = class,
-                           y = hwy))
+  geom_boxplot(aes(x = class,
+                   y = hwy))
 ```
 
 
@@ -82,18 +82,29 @@ Use the help page for `geom_histogram` to make the bins 2 units wide.
 #| label: Fourth Visualization: Histogram with Binwidth
 # Creates histogram with in-built mpg dataset, and controls binwidth.
 ggplot(data = mpg) +
-  geom_histogram(aes(x = hwy), binwidth = 2)
+  geom_histogram(aes(x = hwy),
+                 binwidth = 2) + 
+  labs(x = "Highway Mileage (mpg)",
+       y = "Frequency")
 ```
 
 
 ## Your Turn 5
 
 Add `color`, `size`, `alpha`, and `shape` aesthetics to your graph. Experiment.  
-
 ```{r}
+#| label: Fifth Visualization: Scatter Plot with Colors and Titles
+# Creates scatter plot with in-built mpg dataset, and modifies the looks of the plot.
 ggplot(data = mpg) +
-  geom_point(mapping = aes(x = displ, y = hwy))
+  geom_point(mapping = aes(x = displ,
+                           y = hwy,
+                           color = class)) + 
+  labs(x = "Engine Displacement (L)",
+       y = "Highway Mileage (mpg)",
+       color = "Vehicle Class") +
+  theme_light()
 ```
+
 
 ## Help Me
 
@@ -116,7 +127,13 @@ q + facet_wrap(~ class)
 Make a bar chart `class` colored by `class`. Use the help page for `geom_bar` to choose a "color" aesthetic for class.
 
 ```{r}
-
+ggplot(data = mpg) +
+  geom_bar(aes(x = class, fill = class)) +
+  guides(fill="none") + 
+  labs(x = "Vehicle Class",
+       y = "Frequency",
+       color = "Vehicle Class") +
+  theme_light()
 ```
 
 ## Quiz
