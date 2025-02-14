@@ -42,7 +42,7 @@ head(mpg)
 Run the code on the slide to make a graph. Pay strict attention to spelling, capitalization, and parentheses!
 
 ```{r}
-#| label: First Visualization: Scatterplot
+#| label: First Visualization - Scatterplot
 # Creates scatterplot with in-built mpg dataset
 ggplot(mpg) + 
   geom_point(aes(x = displ,
@@ -55,7 +55,7 @@ ggplot(mpg) +
 Replace this scatterplot with one that draws boxplots. Use the cheatsheet. Try your best guess.
 
 ```{r}
-#| label: Second Visualization: Boxplot
+#| label: Second Visualization - Boxplot
 # Creates boxplot with in-built mpg dataset
 ggplot(data = mpg) +
   geom_boxplot(aes(x = class,
@@ -68,7 +68,7 @@ ggplot(data = mpg) +
 Make a histogram of the `hwy` variable from `mpg`. Hint: do not supply a y variable.
 
 ```{r}
-#| label: Third Visualization: Histogram
+#| label: Third Visualization -  Histogram
 # Creates histogram with in-built mpg dataset
 ggplot(data = mpg) +
   geom_histogram(aes(x = hwy))
@@ -79,7 +79,7 @@ ggplot(data = mpg) +
 Use the help page for `geom_histogram` to make the bins 2 units wide.
 
 ```{r}
-#| label: Fourth Visualization: Histogram with Binwidth
+#| label: Fourth Visualization -  Histogram with Binwidth
 # Creates histogram with in-built mpg dataset, and controls binwidth.
 ggplot(data = mpg) +
   geom_histogram(aes(x = hwy),
@@ -93,7 +93,7 @@ ggplot(data = mpg) +
 
 Add `color`, `size`, `alpha`, and `shape` aesthetics to your graph. Experiment.  
 ```{r}
-#| label: Fifth Visualization: Scatter Plot with Colors and Titles
+#| label: Fifth Visualization -  Scatter Plot with Colors and Titles
 # Creates scatter plot with in-built mpg dataset, and modifies the looks of the plot.
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ,
@@ -112,7 +112,8 @@ What do `facet_grid()` and `facet_wrap()` do?
 (run the code, interpret, convince your group)
 
 ```{r}
-# Makes a plot that the commands below will modify
+#| label: Test Visualization -  Scatter Plots Seperated by Other Variables
+# Creates several scatter plots with in-built mpg dataset, and seperates data based on specified variables.
 q <- ggplot(mpg) + geom_point(aes(x = displ, y = hwy))
 
 q + facet_grid(. ~ cyl)
@@ -127,6 +128,8 @@ q + facet_wrap(~ class)
 Make a bar chart `class` colored by `class`. Use the help page for `geom_bar` to choose a "color" aesthetic for class.
 
 ```{r}
+#| label: Sixth Visualization -  Bar Plot with Additional Modifications
+# Creates a bar plot with several other visualization options.
 ggplot(data = mpg) +
   geom_bar(aes(x = class, fill = class)) +
   guides(fill="none") + 
@@ -141,9 +144,11 @@ ggplot(data = mpg) +
 What will this code do?
 
 ```{r}
-ggplot(mpg) + 
-  geom_point(aes(displ, hwy)) +
-  geom_smooth(aes(displ, hwy)) 
+#| label: Quiz -  Scatter Plot and Saving Plots
+# Creates and saves a plot to a .jpg image file.
+ggplot(mpg, aes(x = displ, y = hwy)) + 
+  geom_point(aes(color=class)) +
+  geom_smooth() 
   ggsave("example.jpg")
 ```
 
